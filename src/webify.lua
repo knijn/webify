@@ -36,7 +36,9 @@ end
 client.run = function(port)
     http.listen(port, function(req,res) 
         for _,o in pairs(client.middleware) do --middleware
-            o(req,res)
+            local req1, res1 = o(req,res)
+            if req1 then req = req1 end
+            if res1 then res = res1 end
         end
         for _,o in pairs(client.stack.post) do -- check for post
             if not o.path or not o.callback then return end
@@ -56,7 +58,15 @@ client.run = function(port)
 end
 
 function webify()
+    local function addArgs(req,res) 
+        local t = split(req.getURL())
+        req.args = t
+    end
+    client.addMiddleware(addArgs)
     return client
 end
+
+
+
 
 return webify
