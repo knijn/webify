@@ -17,7 +17,7 @@ client.stack = {["get"]={},["post"]={}}
 client.middleware = {}
 
 client.addMiddleware = function(func) 
-    table.insert(client.middleware)
+    table.insert(client.middleware,func)
 end
 client.get = function(path, callback)
     local t = {}
