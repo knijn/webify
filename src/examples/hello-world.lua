@@ -2,7 +2,7 @@ local webify = require("../webify")
 local app = webify()
 
 app.addMiddleware(function(req,res) 
-  print("Got request from")
+  print("Got request for " .. req.getURL())
 end)
 
 app.get("/", function(req,res)
