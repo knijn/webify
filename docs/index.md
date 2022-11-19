@@ -8,4 +8,4 @@ You can install webify using the command
 
 ```sh
 wget run https://raw.githubusercontent.com/knijn/webify/main/install.lua
-```
+``` 
