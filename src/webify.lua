@@ -66,6 +66,7 @@ function webify()
         local body = req.readAll()
         req.readAll = function() return body end
         req.json = textutils.serialiseJSON(body)
+        req.body = body
     end
 
     client.addMiddleware(addArgs)
