@@ -11,10 +11,5 @@ app.get("/", function(req,res)
   res.close()
 end)
 
-app.post("/", function(req, res) 
-  print(textutils.serialise(req.readAll()))
-  res.write("OK")
-  res.close()
-end)
 
 app.run(5024)
