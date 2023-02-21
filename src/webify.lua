@@ -62,7 +62,14 @@ function webify()
         local t = split(req.getURL())
         req.args = t
     end
+    local function addJSON(req,res)
+        local body = req.readAll()
+        req.readAll = function() return body end
+        req.json = textutils.serialiseJSON(body)
+    end
+
     client.addMiddleware(addArgs)
+    client.addMiddleware(addJSON)
     return client
 end
 
