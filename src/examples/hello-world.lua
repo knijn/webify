@@ -6,9 +6,7 @@ app.addMiddleware(function(req,res)
 end)
 
 app.get("/", function(req,res)
-  print(textutils.serialise(req.args))
-  res.write("Hello World!")
-  res.close()
+  return "Hello World!"
 end)
 
 
