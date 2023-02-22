@@ -43,14 +43,26 @@ client.run = function(port)
         for _,o in pairs(client.stack.post) do -- check for post
             if not o.path or not o.callback then return end
             if startsWith(req.getURL(),o.path) then
-                o.callback(req,res)
+                local output = o.callback(req,res)
+                if pcall(function() res.write("") end) and output then
+                    res.write(output)
+                    res.close()
+                else
+                    -- it was closed, nothing to do here
+                end
                 return
             end
         end
         for _,o in pairs(client.stack.get) do -- check for get
             if not o.path or not o.callback then return end
             if startsWith(req.getURL(),o.path) then
-                o.callback(req,res)
+                local output = o.callback(req,res)
+                if pcall(function() res.write("") end) and output then
+                    res.write(output)
+                    res.close()
+                else
+                    -- it was closed, nothing to do here
+                end
                 return
             end
         end
