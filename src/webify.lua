@@ -1,3 +1,9 @@
+---------
+-- Webify
+-- @module webify
+-- @author EmmaKnijn
+-- @license MIT
+
 local function startsWith(string,start)
     return string.sub(string,1,string.len(start))==start
 end
@@ -16,44 +22,78 @@ local client = {}
 client.stack = {["get"]={},["post"]={},["put"]={},["patch"]={},["delete"]={}}
 client.middleware = {}
 
+---- Adds a middleware,
+-- they allow you to make changes to the req and res objects before they reach your handlers
+-- @param func A function to call
+-- @return nil
 client.addMiddleware = function(func) 
     table.insert(client.middleware,func)
 end
+
+---- Adds a GET request to the stack
+-- The callback function will be ran on a matching GET request
+-- @param path The path that will be checked against, "/" by default
+-- @param func A callback function
+-- @return nil
 client.get = function(path, callback)
     local t = {}
-    t.path = path
+    t.path = path or "/"
     t.callback = callback
     table.insert(client.stack.get,t)
 end
 
+---- Adds a POST request to the stack
+-- The callback function will be ran on a matching POST request
+-- @param path The path that will be checked against, "/" by default
+-- @param func A callback function
+-- @return nil
 client.post = function(path, callback)
     local t = {}
-    t.path = path
+    t.path = path or "/"
     t.callback = callback
     table.insert(client.stack.post,t)
 end
 
+---- Adds a PUT  request to the stack
+-- The callback function will be ran on a matching PUT request
+-- @param path The path that will be checked against, "/" by default
+-- @param func A callback function
+-- @return nil
 client.put = function(path, callback)
     local t = {}
-    t.path = path
+    t.path = path or "/"
     t.callback = callback
     table.insert(client.stack.put,t)
 end
 
+---- Adds a PATCH request to the stack
+-- The callback function will be ran on a matching PATCH request
+-- @param path The path that will be checked against, "/" by default
+-- @param func A callback function
+-- @return nil
 client.patch = function(path, callback)
     local t = {}
-    t.path = path
+    t.path = path or "/"
     t.callback = callback
     table.insert(client.stack.patch,t)
 end
 
+---- Adds a DELETE request to the stack
+-- The callback function will be ran on a matching DELETE request
+-- @param path The path that will be checked against, "/" by default
+-- @param func A callback function
+-- @return nil
 client.delete = function(path, callback)
     local t = {}
-    t.path = path
+    t.path = path or "/"
     t.callback = callback
     table.insert(client.stack.delete,t)
 end
 
+---- Runs the listener
+-- The callback function will be ran on a matching DELETE request
+-- @param num
+-- @return nil
 client.run = function(port)
     http.listen(port, function(req,res) 
         for _,o in pairs(client.middleware) do --middleware
@@ -76,6 +116,9 @@ client.run = function(port)
         end
     end)
 end
+
+---- Creates a client object
+-- @return tbl The client object
 
 function webify()
     local function addArgs(req,res) 
