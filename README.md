@@ -4,7 +4,7 @@
 
 Webify is an unopinionated web framework, based on express.js syntax
 
-![webify-example](https://github.com/knijn/webify/raw/main/doc/webify-example.mp4)
+https://user-images.githubusercontent.com/64010592/220852019-5fc1de44-358a-4424-adbf-5399fcda11b8.mp4
 
 # Install
 
