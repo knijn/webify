@@ -62,7 +62,6 @@ client.run = function(port)
             if res1 then res = res1 end
         end
         for _,o in pairs(client.stack[string.lower(req.getMethod())]) do -- check for get
-            print("Used catchall")
             if not o.path or not o.callback then return end
             if startsWith(req.getURL(),o.path) then
                 local output = o.callback(req,res)
