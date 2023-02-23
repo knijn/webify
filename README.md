@@ -2,7 +2,9 @@
 
 # Webify
 
-Webify is an unopinionated web framework for the web, based on express.js syntax
+Webify is an unopinionated web framework, based on express.js syntax
+
+![webify-example](https://github.com/knijn/webify/raw/main/doc/webify-example.mp4)
 
 # Install
 
