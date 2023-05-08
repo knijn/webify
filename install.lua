@@ -33,7 +33,6 @@ while true do
       error("Cancelled Installation")
     end
     print("Installing now")
-    shell.run("wget " .. url)
 
     print("Downloading libraries right now")
     shell.run("wget " .. baseRepoURL .. "/src/webify.lua /lib/webify.lua")
