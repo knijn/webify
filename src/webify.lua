@@ -128,7 +128,7 @@ function webify()
     local function addJSON(req,res)
         local body = req.readAll()
         req.readAll = function() return body end
-        req.json = textutils.serialiseJSON(body)
+        req.json = textutils.unserialiseJSON(body)
         req.body = body
     end
 
