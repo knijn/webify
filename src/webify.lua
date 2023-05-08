@@ -101,6 +101,7 @@ client.run = function(port)
             if req1 then req = req1 end
             if res1 then res = res1 end
         end
+        if client.stack[string.lower(req.getMethod())] then
         for _,o in pairs(client.stack[string.lower(req.getMethod())]) do -- check for get
             if not o.path or not o.callback then return end
             if startsWith(req.getURL(),o.path) then
@@ -113,6 +114,7 @@ client.run = function(port)
                 end
                 return
             end
+        end
         end
     end)
 end
