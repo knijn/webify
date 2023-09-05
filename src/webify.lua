@@ -22,6 +22,13 @@ local client = {}
 client.stack = {["get"]={},["post"]={},["put"]={},["patch"]={},["delete"]={}}
 client.middleware = {}
 
+local function stackAdd(method,path,callback)
+    local t = {}
+    t.path = path or "/"
+    t.callback = callback
+    table.insert(client.stack[method],t)
+end
+
 ---- Adds a middleware,
 -- they allow you to make changes to the req and res objects before they reach your handlers
 -- @param func A function to call
@@ -36,10 +43,7 @@ end
 -- @param func A callback function
 -- @return nil
 client.get = function(path, callback)
-    local t = {}
-    t.path = path or "/"
-    t.callback = callback
-    table.insert(client.stack.get,t)
+    stackAdd("get",path,callback)
 end
 
 ---- Adds a POST request to the stack
@@ -48,10 +52,7 @@ end
 -- @param func A callback function
 -- @return nil
 client.post = function(path, callback)
-    local t = {}
-    t.path = path or "/"
-    t.callback = callback
-    table.insert(client.stack.post,t)
+    stackAdd("post",path,callback)
 end
 
 ---- Adds a PUT  request to the stack
@@ -60,10 +61,7 @@ end
 -- @param func A callback function
 -- @return nil
 client.put = function(path, callback)
-    local t = {}
-    t.path = path or "/"
-    t.callback = callback
-    table.insert(client.stack.put,t)
+    stackAdd("put",path,callback)
 end
 
 ---- Adds a PATCH request to the stack
@@ -72,10 +70,7 @@ end
 -- @param func A callback function
 -- @return nil
 client.patch = function(path, callback)
-    local t = {}
-    t.path = path or "/"
-    t.callback = callback
-    table.insert(client.stack.patch,t)
+    stackAdd("patch",path,callback)
 end
 
 ---- Adds a DELETE request to the stack
@@ -84,10 +79,7 @@ end
 -- @param func A callback function
 -- @return nil
 client.delete = function(path, callback)
-    local t = {}
-    t.path = path or "/"
-    t.callback = callback
-    table.insert(client.stack.delete,t)
+    stackAdd("delete",path,callback)
 end
 
 ---- Runs the listener
