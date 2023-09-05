@@ -5,9 +5,8 @@ app.addMiddleware(function(req,res)
   print("Got request for " .. req.getURL())
 end)
 
-app.get("/", function(req,res)
+app.get("*", function(req,res)
   return "Hello World!"
 end)
-
 
 app.run(5024)

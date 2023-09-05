@@ -96,7 +96,7 @@ client.run = function(port)
         if client.stack[string.lower(req.getMethod())] then
         for _,o in pairs(client.stack[string.lower(req.getMethod())]) do -- check for get
             if not o.path or not o.callback then return end
-            if startsWith(req.getURL(),o.path) then
+            if startsWith(req.getURL(),o.path) or o.path == "*" then
                 local output = o.callback(req,res)
                 if pcall(function() res.write("") end) and output then
                     res.write(output)
