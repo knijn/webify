@@ -34,7 +34,7 @@ jobs:
       - name: Produce artifacts 🎁
         uses: actions/upload-artifact@v3
         with:
-          name: doc
+          name: github-pages
           path: |
             doc
 
