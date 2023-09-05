@@ -31,6 +31,13 @@ jobs:
       - name: Generate documentation 📄
         run: bin/illuaminate doc-gen
 
+      - name: Produce artifacts 🎁
+        uses: actions/upload-artifact@v3
+        with:
+          name: doc
+          path: |
+            doc
+
       #Using another action that takes generated HTML and pushes it to GH Pages
       - name: Deploy page 🚀
         id: deployment
