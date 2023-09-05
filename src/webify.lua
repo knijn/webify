@@ -1,5 +1,5 @@
 ---------
--- Webify is an unopinionated web framework, based on express.js syntax
+-- Webify is an unopinionated and minimalist web framework, based on express.js syntax
 -- @module webify
 -- @author EmmaKnijn
 -- @license MIT
