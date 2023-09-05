@@ -29,6 +29,5 @@ jobs:
 
       #Using another action that takes generated HTML and pushes it to GH Pages
       - name: Deploy page 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: doc
+        id: deployment
+        uses: actions/deploy-pages@v1
